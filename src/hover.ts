@@ -70,7 +70,7 @@ export function getHoverMarkdownString(locations: Navigation[]) : MarkdownString
 	let contents = new MarkdownString();
 	let index = 0;
 
-	for (let location of locations) 
+	for (let location of locations)
 	{
 		index++;
 		if (index > 1) {
@@ -87,7 +87,7 @@ export function getHoverMarkdownString(locations: Navigation[]) : MarkdownString
 		if (location.filename && location.filename.length > 0 && location.location >= 0) {
 			source = `: ${extractFilename(location.filename)}:${location.location}`;
 		}
-	
+
 		let documentation = location.documentation;
 		let fileContents = "";
 		if (documentation === "" && location.filename !== "" && location.location >= 0) {
@@ -146,14 +146,14 @@ export function getHoverMarkdownString(locations: Navigation[]) : MarkdownString
 			}
 			documentation = formatDocumentationAsMarkdown(documentation);
 			const split = documentation.split('::');
-			if (split.length > 1) {				
+			if (split.length > 1) {
 				contents.appendMarkdown(split[0]);
 				contents.appendMarkdown('\n\n---\n\n');
 				contents.appendCodeblock(split[1]);
 			} else {
 				contents.appendMarkdown(split[0]);
 			}
-		}		
+		}
 	}
 
 	return contents;
@@ -194,7 +194,7 @@ export function getDefinitionFromFile(filename: string, line: number): Navigatio
 
 			let docs = "";
 			docs = getPyDocsAtLine(lines, line - 1);
-			
+
 			let args = "";
 			if (text.indexOf('(') > 0) {
 				args = text.substr(text.indexOf('('));
@@ -217,4 +217,3 @@ export function getDefinitionFromFile(filename: string, line: number): Navigatio
 		return undefined;
 	}
 }
-

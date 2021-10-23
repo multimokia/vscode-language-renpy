@@ -15,6 +15,19 @@ export function getDocumentSymbols(document: TextDocument): DocumentSymbol[] | u
         return;
     }
 
+    let baseBlockMatcher = /(init\s?(\d+)?\s?(python)?\s?(early)?\s?(?:in\s+([A-Za-z_0-9 ]+))?|label\s+([A-Za-z_]+)\s?(\(.*\))?|python early)/;
+    let indentLevel = 0;
+
+
+    let baseSymbols: DocumentSymbol[] = [];
+
+    for (let i = 0; i < document.lineCount; i++) {
+        const line = document.lineAt(i);
+
+        if (line.text.match(baseBlockMatcher)) {
+            baseSymbols
+        }
+    }
     const uri = Uri.file(document.fileName);
     const documentFilename = stripWorkspaceFromFile(uri.path);
     let results: DocumentSymbol[] = [];
@@ -26,7 +39,7 @@ export function getDocumentSymbols(document: TextDocument): DocumentSymbol[] | u
             if (category[key][0] === documentFilename) {
                 const childRange = new Range(category[key][1] - 1, 0, category[key][1] - 1, 0);
                 let classParent = new DocumentSymbol(key, `:${category[key][1]}`, getDocumentSymbolKind(type, true), childRange, childRange);
-                if (type === 'class') {                                        
+                if (type === 'class') {
                     getClassDocumentSymbols(classParent, key);
                 }
                 parentSymbol.children.push(classParent);

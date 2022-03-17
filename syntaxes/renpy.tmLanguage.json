@@ -5,27 +5,6 @@
   "firstLineMatch": "^#!/.*\\brenpy\\b",
   "patterns": [
     {
-      "begin": "(^[ \\t]+)?(?=#)",
-      "beginCaptures": {
-        "1": {
-          "name": "punctuation.whitespace.comment.leading.python.renpy"
-        }
-      },
-      "end": "(?!\\G)",
-      "patterns": [
-        {
-          "begin": "#",
-          "beginCaptures": {
-            "0": {
-              "name": "punctuation.definition.comment.python.renpy"
-            }
-          },
-          "end": "\\n",
-          "name": "comment.line.number-sign.python.renpy"
-        }
-      ]
-    },
-    {
       "match": "\\b(?i:(0x\\h*)L)",
       "name": "constant.numeric.integer.long.hexadecimal.python.renpy"
     },
@@ -422,6 +401,27 @@
               "match": "\\b([a-zA-Z_][a-zA-Z_0-9]*)\\s*(?:(,)|(?=[\\n\\)]))"
             }
           ]
+        }
+      ]
+    },
+    {
+      "begin": "(^[ \\t]+)?(?=#)",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.whitespace.comment.leading.python.renpy"
+        }
+      },
+      "end": "(?!\\G)",
+      "patterns": [
+        {
+          "begin": "#",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.comment.python.renpy"
+            }
+          },
+          "end": "\\n",
+          "name": "comment.line.number-sign.python.renpy"
         }
       ]
     },
